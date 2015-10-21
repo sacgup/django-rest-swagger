@@ -76,7 +76,11 @@ class SwaggerUIView(View):
         if rfs.SWAGGER_SETTINGS.get('is_superuser') and \
                 not request.user.is_superuser:
             return False
-
+        
+        if rfs.SWAGGER_SETTINGS.get('is_staff') and \
+                not request.user.is_staff:
+            return False
+            
         if rfs.SWAGGER_SETTINGS.get('is_authenticated') and \
                 not request.user.is_authenticated():
             return False
